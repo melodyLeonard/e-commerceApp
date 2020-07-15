@@ -6,6 +6,8 @@ import {
     productDetailsReducer
 } from './reducers/dataReducer'
 
+import { cartReducer } from './reducers/cartReducer'
+
 import userReducer from './reducers/userReducer'
 import uiReducer from './reducers/uiReducer'
 
@@ -15,6 +17,7 @@ const reducers = combineReducers({
     user: userReducer,
     productList: productListReducer,
     productDetails: productDetailsReducer,
+    cart: cartReducer,
     UI: uiReducer
 })
 

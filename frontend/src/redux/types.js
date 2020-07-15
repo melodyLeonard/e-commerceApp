@@ -21,6 +21,8 @@ export const PRODUCT_DETAILS_SUCCESS = "[product details] PRODUCT_DETAILS_SUCCES
 export const PRODUCT_DETAILS_LOADING = "[product details] PRODUCT_DETAILS_LOADING"
 export const PRODUCT_DETAILS_FAIL = "[product details] PRODUCT_DETAILS_FAIL"
 
+//CART TYPES
+export const ADD_TO_CART = "[cart] ADD_TO_CART"
 
 //SIDEBAR TOGGLED
 export const SHOW_SIDEBAR = "[sidebar] SHOW_SIDEBAR"

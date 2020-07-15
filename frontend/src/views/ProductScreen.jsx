@@ -23,6 +23,10 @@ const ProductScreen = (props) => {
         }
     }, [])
 
+    const handleAddToCart = () => {
+        props.history.push('/cart' + props.match.id + '?qty=' + qty)
+    }
+
     const handleChange = (e) => {
         setQty(e.target.value)
     }
@@ -36,7 +40,7 @@ const ProductScreen = (props) => {
                             <a href="/">
                                 <div className="back-button-container">
                                     Back to products
-            </div>
+                                </div>
                             </a>
                             <div className="details ">
                                 <div className="detail-image">
@@ -67,7 +71,7 @@ const ProductScreen = (props) => {
                                             Price: {product.price}
                                         </li>
                                         <li>
-                                            Status: {product.status}
+                                            Status: {product.countInStock > 0 ? 'In stock' : 'Unavailble'}
                                         </li>
                                         <li>
                                             Qty: <select
@@ -79,8 +83,15 @@ const ProductScreen = (props) => {
                                                 )}
                                             </select>
                                         </li>
-                                        <li>
-                                            <button className="button">Add to Cart</button>
+                                        <li>{
+                                            product.countInStock > 0 &&
+                                            <button
+                                                onClick={handleAddToCart}
+                                                className="button">
+                                                Add to Cart
+                                            </button>
+
+                                        }
                                         </li>
                                     </ul>
                                 </div>

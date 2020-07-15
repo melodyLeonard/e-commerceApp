@@ -14,9 +14,10 @@ app.get('/api/products', (req, res) => {
     return res.json(data.products)
 })
 
+
 app.get('/api/products/:id', (req, res) => {
     const productId = req.params.id
-    const product = data.products.find(p => p.id == productId)
+    const product = data.products.find(x => x.id == productId)
     if (product) {
         return res.json(product)
     } else {

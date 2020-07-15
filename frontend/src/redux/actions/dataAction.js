@@ -9,13 +9,13 @@ import {
 
 } from "../types"
 
-import axios from 'axios'
+import Axios from 'axios'
 
 
 export const detailsProduct = (productId) => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_DETAILS_REQUEST, payload: productId })
-        const { data } = await axios.get("/api/products/" + productId)
+        const { data } = await Axios.get("/api/products/" + productId)
 
         dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data })
 
@@ -30,7 +30,7 @@ export const listProducts = () => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_LIST_REQUEST })
         dispatch({ type: PRODUCT_LIST_LOADING })
-        const { data } = await axios.get('/api/products');
+        const { data } = await Axios.get('/api/products');
         dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data })
 
     } catch (error) {
