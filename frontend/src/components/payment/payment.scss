@@ -7,7 +7,7 @@
     --error: rgb(194, 28, 16);
 }
 
-.shipping-container {
+.payment-container {
     width: 100%;
     height: auto;
     display: flex;
@@ -44,8 +44,8 @@
 
         .inputs-container {
             // display: flex;
-// flex-direction: row;
-// justify-content: flex-start;
+            // flex-direction: row;
+            // justify-content: flex-start;
             // background: var(--button-disabled);
 
             .input {

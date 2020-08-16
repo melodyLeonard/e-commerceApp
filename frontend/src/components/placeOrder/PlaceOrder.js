@@ -12,10 +12,19 @@ const PlaceOrder = (props) => {
 
     if (!shipping.address) {
         props.history.push('/shipping')
-    }
-    if (!payment) {
+    } else if (!payment.paymentMethod) {
         props.history.push('/payment')
     }
+
+    const itemsPrice = cartItems.reduce((a, c) => a + c.price * c.qty, 0)
+    const shippingPrice = itemsPrice < 10000 ? 0 : 200
+    const taxPrice = 0.25 * itemsPrice
+    const totalPrice = itemsPrice + shippingPrice + taxPrice
+
+    const placeOrderHandler = () => {
+        // 
+    }
+
 
     const dispatch = useDispatch()
 
@@ -36,8 +45,7 @@ const PlaceOrder = (props) => {
                 <div>
                     <h3> shipping</h3>
                     <div>
-                        {cart.shipping.address}, {cart.shipping.city},
-                        {cart.shipping.postalCode}, {cart.shipping.country}
+                        {cart.shipping.address}, {cart.shipping.city}, {cart.shipping.postalCode}, {cart.shipping.country}
                     </div>
                 </div>
                 <div>
@@ -48,7 +56,7 @@ const PlaceOrder = (props) => {
 
                 </div>
                 <div>
-                    <ul className="cart">
+                    <ul className="cart-list-container">
                         <li>
                             <h3>
                                 Shopping Cart
@@ -88,17 +96,36 @@ const PlaceOrder = (props) => {
             </div>
 
             <div className="placeorder-action">
-                <h3 >
-                    Subtotal ({cartItems.reduce((acc, cur) => acc + cur.qty, 0)} items)
-                    :
-                    <span className="amount">
-                        N {cartItems.reduce((acc, cur) => acc + cur.price * cur.qty, 0)}
-                    </span>
+                <ul>
+                    <li>
+                        <button className="button" onClick={placeOrderHandler}>Place Order</button>
+                    </li>
+                    <li>
+                        <h3>
+                            Your Order
+                        </h3>
+                    </li>
 
-                </h3>
-                <button className="button" disabled={cartItems.length === 0}>
-                    Proceed to Checkout
-                </button>
+                    <li>
+                        <div> Items </div>
+                        <div>N{itemsPrice}</div>
+                    </li>
+                    <li>
+                        <div> shipping </div>
+                        <div>N{shippingPrice}</div>
+                    </li>
+                    <li>
+                        <div>Tax </div>
+                        <div>N{taxPrice}</div>
+                    </li>
+                    <li>
+                        <div> Total: </div>
+                        <div>N{totalPrice}</div>
+                    </li>
+
+                </ul>
+
+
             </div>
         </div>
     )

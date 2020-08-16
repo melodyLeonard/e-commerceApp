@@ -14,7 +14,6 @@ function Shipping(props) {
 
     const dispatch = useDispatch()
 
-
     const { city, country, address, postalCode } = inputs;
     const onChange = e => {
         setInputs({ ...inputs, [e.target.name]: e.target.value });
@@ -76,7 +75,7 @@ function Shipping(props) {
                         <div className="inputs-container">
                             <input
                                 placeholder="Postal Code"
-                                type="postalCode"
+                                type="number"
                                 value={postalCode}
                                 name="postalCode"
                                 onChange={e => onChange(e)}

@@ -5,14 +5,13 @@ import { savePayment } from "../../redux/actions/cartActions";
 import CheckOutSteps from "../checkout/CheckOutSteps";
 
 function Payment(props) {
-    const [paymentMethod, setPaymentMethod] = useState("paypal");
+    const [paymentMethod, setPaymentMethod] = useState("");
     const dispatch = useDispatch()
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        dispatch(savePayment(paymentMethod))
+        dispatch(savePayment({ paymentMethod }))
         props.history.push('/placeorder')
-
     };
 
 
@@ -20,11 +19,11 @@ function Payment(props) {
     return (
         <div>
             <CheckOutSteps step1 step2 step3 />
-            <div className="shipping-container" >
+            <div className="payment-container" >
                 <div className="form-container">
                     <div className="header">
 
-                        <h3 className="header-text"> Payment</h3>
+                        <h3 className="header-text"> Payment Method</h3>
                     </div>
                     <form onSubmit={onSubmitHandler}>
                         <div className="inputs-container">

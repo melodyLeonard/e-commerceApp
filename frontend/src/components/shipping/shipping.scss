@@ -9,7 +9,7 @@
 
 .shipping-container {
     width: 100%;
-    height: 100%;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -23,6 +23,7 @@
         min-height: 400px;
         padding: .5rem;
         // background: var(--color);
+        padding: 2rem 0;
         color: var(--background);
         text-align: center;
         box-shadow: 5px 5px 20px #cbced1, -5px -5px 20px #ffffff;
@@ -47,7 +48,6 @@
 
 
             .input {
-                font-size: 1rem;
                 padding: 5px;
                 width: 90%;
                 height: 40px;
@@ -56,6 +56,7 @@
                 margin-bottom: .5rem;
                 background: var(--color);
                 color: var(--dark-color);
+                font-size: 1rem;
             }
         }
 

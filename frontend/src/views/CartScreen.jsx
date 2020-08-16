@@ -24,9 +24,6 @@ const CartScreen = (props) => {
         dispatch(removeFromCart(productId))
     }
 
-    // const addToCartHandler = (productId, e) => {
-    //     dispatch(addToCart(productId, e.target.value))
-    // }
 
     useEffect(() => {
         if (productId) {
@@ -88,10 +85,10 @@ const CartScreen = (props) => {
 
             <div className="cart-action">
                 <h3 >
-                    Subtotal ({cartItems.reduce((acc, cur) => acc + cur.qty, 0)} items)
+                    Subtotal ({cartItems.reduce((acc, cur) => parseInt(acc) + parseInt(cur.qty), 0)} items)
                     :
                     <span className="amount">
-                        N {cartItems.reduce((acc, cur) => acc + cur.price * cur.qty, 0)}
+                        N {cartItems.reduce((acc, cur) => parseInt(acc) + parseInt(cur.price) * parseInt(cur.qty), 0)}
                     </span>
 
                 </h3>

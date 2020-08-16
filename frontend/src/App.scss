@@ -296,29 +296,20 @@
     }
 
     .details-action {
-      flex: 2 1 25rem;
+      flex: 1 1 20rem;
       border-radius: 2px;
-      background: #f8f8f8;
+      border: .1rem #c0c0c0 solid;
+      border-radius: .5rem;
       padding: 1rem;
       font-size: 1.2rem;
       font-weight: bold;
       color: var(--sidebar-color);
-      background: var(--link-active);
 
 
       ul {
 
         li {
           margin-bottom: .2rem;
-
-          select {
-            margin-top: 1rem;
-            font-weight: bold;
-            width: 50px;
-            outline: none;
-            border-radius: 2px;
-            color: var(--sidebar-color);
-          }
 
           :last-child {
             display: flex;
@@ -471,13 +462,13 @@
 
   .cart-action {
     flex: 1 1 20rem;
-    background: var(--link-active);
+    border: .1rem #c0c0c0 solid;
+    border-radius: .5rem;
     justify-content: center;
     align-items: center;
     display: flex;
     flex-direction: column;
     padding: 1rem;
-    border-radius: 2px;
 
     .amount {
       font-size: 1.4rem;
@@ -495,7 +486,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.2rem;
+      font-size: 1rem;
       font: 300;
       background: var(--check-out-button);
       margin: 10px 0;
