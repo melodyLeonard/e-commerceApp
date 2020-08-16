@@ -1,67 +1,44 @@
-import { SET_USER, SET_ERRORS, CLEAR_ERRORS, LOADING_UI, SET_UNAUTHENTICATED } from '../types'
+import {
+    USER_SIGNIN_REQUEST,
+    USER_SIGNIN_SUCCESS,
+    USER_SIGNIN_FAIL,
+    USER_SIGNUP_REQUEST,
+    USER_SIGNUP_SUCCESS,
+    USER_SIGNUP_FAIL
+} from '../types'
 import axios from 'axios'
+import Cookie from 'js-cookie'
 
-export const loginUser = (userData, history) => async (dispatch) => {
+
+export const signin = (email, password) => async (dispatch) => {
+    dispatch({ type: USER_SIGNIN_REQUEST, payload: { email, password } })
     try {
-        dispatch({ type: LOADING_UI })
-        const res = await axios.post('/login', userData);
-        setAuthHeaders(res.data.token)
-        dispatch(getUserData())
-        dispatch({
-            type: CLEAR_ERRORS
-        })
-        history.push('/')
-
-    } catch (err) {
-        dispatch({
-            type: SET_ERRORS,
-            payload: err.response.data
-        })
+        const { data } = await axios.post('http://127.0.0.1:4000/api/users/signin', { email, password });
+        const token = data.token
+        if (token) {
+            dispatch({ type: USER_SIGNIN_SUCCESS, payload: data })
+            Cookie.set('userInfo', JSON.stringify(data))
+        }
+        dispatch({ type: USER_SIGNIN_FAIL, payload: data.msg })
+    } catch (error) {
+        dispatch({ type: USER_SIGNIN_FAIL, payload: error.message })
     }
 
 }
 
-export const signupUser = (newUserData, history) => async (dispatch) => {
+export const signup = (name, email, password) => async (dispatch) => {
+    dispatch({ type: USER_SIGNUP_REQUEST, payload: { name, email, password } })
     try {
-        dispatch({ type: LOADING_UI })
-        const res = await axios.post('/login', newUserData);
-        setAuthHeaders(res.data.token)
-        dispatch(getUserData())
-        dispatch({
-            type: CLEAR_ERRORS
-        })
-        history.push('/')
-
-    } catch (err) {
-        dispatch({
-            type: SET_ERRORS,
-            payload: err.response.data
-        })
+        const { data } = await axios.post('http://127.0.0.1:4000/api/users/signup', { name, email, password });
+        const token = data.token
+        if (token) {
+            dispatch({ type: USER_SIGNUP_SUCCESS, payload: data })
+            Cookie.set('userInfo', JSON.stringify(data))
+        }
+        dispatch({ type: USER_SIGNUP_FAIL, payload: data.msg })
+    } catch (error) {
+        dispatch({ type: USER_SIGNUP_FAIL, payload: error.message })
     }
 
 }
 
-export const logoutUser = () => (dispatch) => {
-    localStorage.removeItem('AuthToken')
-    delete axios.defaults.headers.common['Authorization']
-    dispatch({ type: SET_UNAUTHENTICATED })
-}
-
-export const getUserData = () => async (dispatch) => {
-    try {
-        const res = await axios.get('/user')
-        dispatch({
-            type: SET_USER,
-            payload: res.data
-        })
-    } catch (err) {
-        console.error(err.message)
-    }
-}
-
-const setAuthHeaders = (token) => {
-    const authToken = `Bearer ${token}`
-    localStorage.setItem('AuthToken', authToken)
-    axios.defaults.headers.common['Authorization'] = authToken;
-
-}

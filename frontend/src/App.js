@@ -9,7 +9,6 @@ import store from './redux/store'
 
 function App() {
     const [sidebar, setSidebar] = useState('sidebar-close')
-
     const toggleSidebar = () => {
         sidebar === 'sidebar' ? setSidebar('sidebar-close') : setSidebar('sidebar')
     }

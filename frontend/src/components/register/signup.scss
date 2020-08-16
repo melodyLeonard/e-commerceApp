@@ -1,0 +1,124 @@
+#root {
+    --background: rgb(40, 75, 131);
+    --color: rgb(243, 243, 243);
+    --disabled: #e4eaf0;
+    --dark-color: rgb(44, 43, 44);
+    --button-disabled: #d6dbe4;
+    --error: rgb(194, 28, 16);
+}
+
+.signin-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+
+
+    .form-container {
+        min-width: 350px;
+        max-width: 355px;
+        min-height: 400px;
+        padding: .5rem;
+        // background: var(--color);
+        color: var(--background);
+        text-align: center;
+        box-shadow: 5px 5px 20px #cbced1, -5px -5px 20px #ffffff;
+
+        .form-error {
+            color: var(--error);
+            font-size: 1rem;
+        }
+
+        .header {
+            padding: 5px;
+            margin-bottom: 2rem;
+
+            .header-text {
+                margin: 0;
+                font-size: 1.5rem;
+            }
+        }
+
+        .inputs-container {
+            margin: .5rem;
+
+
+            .input {
+                font-size: 1rem;
+                padding: 5px;
+                width: 90%;
+                height: 40px;
+                border-color: var(--background);
+                border-radius: 3px;
+                margin-bottom: .5rem;
+                background: var(--disabled);
+                color: var(--dark-color);
+            }
+        }
+
+        .button-container {
+            margin-top: 1.5rem;
+            height: 35px;
+            width: 60%;
+            display: flex;
+            padding-left: 1.5rem;
+            flex-direction: row;
+
+            .button {
+                height: 100%;
+                width: 80%;
+                padding: 5px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1rem;
+                background: var(--background);
+                margin: 10px 0;
+                border-radius: 5px;
+                transform: translateZ(0);
+                transition: transform 0.25s ease-in-out;
+                color: var(--main-brand-color);
+                border: none;
+                outline: none;
+                border-radius: 2px;
+                cursor: pointer;
+
+
+            }
+
+            .button:disabled {
+                background: var(--button-disabled);
+
+            }
+
+            .button:hover {
+                transform: scale(1.05);
+            }
+
+
+
+
+        }
+
+        .account-choice {
+            margin-top: 2rem;
+            width: 100%;
+            color: var(--dark-color);
+            text-align: center;
+
+            p {
+
+                font-size: 1.2rem;
+
+                a {
+                    color: var(--background);
+                    font-weight: bold;
+                }
+            }
+
+        }
+    }
+}

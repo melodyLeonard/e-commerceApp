@@ -1,8 +1,14 @@
 //USER REDUCER TYPES
-export const SET_AUTHENTICATED = "[user] SET_AUTHENTICATED"
-export const SET_UNAUTHENTICATED = "[user] SET_UNAUTHENTICATED"
-export const SET_USER = "[user] SET_USER"
-export const LOADING_USER = "[user] LOADING_USER"
+
+export const USER_SIGNIN_REQUEST = "[login] USER_SIGNIN_REQUEST"
+export const USER_SIGNIN_SUCCESS = "[login] USER_SIGNIN_SUCCESS"
+export const USER_SIGNIN_FAIL = "[login] USER_SIGNIN_FAIL"
+
+export const USER_SIGNUP_REQUEST = "[signin] USER_SIGNUP_REQUEST"
+export const USER_SIGNUP_SUCCESS = "[signin] USER_SIGNUP_SUCCESS"
+export const USER_SIGNUP_FAIL = "[signin] USER_SIGNUP_FAIL"
+
+
 
 //UI REDUCER TYPES
 export const SET_ERRORS = "[ui] SET_ERRORS"
@@ -16,6 +22,16 @@ export const PRODUCT_LIST_SUCCESS = "[product] PRODUCT_LIST_SUCCESS"
 export const PRODUCT_LIST_FAIL = "[product] PRODUCT_LIST_FAIL"
 export const PRODUCT_LIST_LOADING = "[product] PRODUCT_LIST_LOADING"
 
+
+export const PRODUCT_SAVE_REQUEST = "[product] PRODUCT_SAVE_REQUEST"
+export const PRODUCT_SAVE_SUCCESS = "[product] PRODUCT_SAVE_SUCCESS"
+export const PRODUCT_SAVE_FAIL = "[product ] PRODUCT_SAVE_FAIL "
+
+
+export const PRODUCT_DELETE_REQUEST = "[product] PRODUCT_DELETE_REQUEST"
+export const PRODUCT_DELETE_SUCCESS = "[product] PRODUCT_DELETE_SUCCESS"
+export const PRODUCT_DELETE_FAIL = "[product] PRODUCT_DELETE_FAIL"
+
 export const PRODUCT_DETAILS_REQUEST = "[product details] PRODUCT_DETAILS_REQUEST"
 export const PRODUCT_DETAILS_SUCCESS = "[product details] PRODUCT_DETAILS_SUCCESS"
 export const PRODUCT_DETAILS_LOADING = "[product details] PRODUCT_DETAILS_LOADING"
@@ -23,6 +39,10 @@ export const PRODUCT_DETAILS_FAIL = "[product details] PRODUCT_DETAILS_FAIL"
 
 //CART TYPES
 export const ADD_TO_CART = "[cart] ADD_TO_CART"
+export const REMOVE_FROM_CART = "[cart] REMOVE_FROM_CART"
+export const CART_SAVE_SHIPPING = "[shipping] CART_SAVE_SHIPPING"
+export const CART_SAVE_PAYMENT = "[payment] CART_SAVE_PAYMENT"
+
 
 //SIDEBAR TOGGLED
 export const SHOW_SIDEBAR = "[sidebar] SHOW_SIDEBAR"

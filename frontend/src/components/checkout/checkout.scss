@@ -1,0 +1,33 @@
+#root {
+    --background-warning: #e0730d;
+    --color: rgb(243, 243, 243);
+
+}
+
+.checkout-steps {
+    display: flex;
+    justify-content: space-between;
+    width: 35rem;
+    margin: 1.5rem auto;
+
+    div {
+        border-top: .3rem #c0c0c0 solid;
+        color: #c0c0c0;
+        flex: 1 1;
+        font-size: 1rem;
+        padding: 1rem;
+
+    }
+
+    .active {
+        border-top: .3rem var(--background-warning) solid;
+        color: var(--background-warning);
+
+
+    }
+
+
+
+
+
+}

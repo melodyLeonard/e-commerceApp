@@ -1,5 +1,12 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
+
 const Navbar = ({ toggleSidebar }) => {
+
+
+    const userSignin = useSelector(state => state.userSignin)
+    const { userInfo } = userSignin
+
     return (
         <div className="nav-bar">
             <div className="brand">
@@ -10,8 +17,14 @@ const Navbar = ({ toggleSidebar }) => {
             </div>
 
             <div className="item-wrapper">
+                {
+                    userInfo ?
+                        <a href="/profile" className="item">{userInfo.name}</a> :
+                        <a href="/signin" className="item">SignIn</a>
+                }
                 <a href="/cart" className="item">Cart </a>
-                <a href="/signin" className="item">SignIn</a>
+
+
             </div>
         </div>
     )

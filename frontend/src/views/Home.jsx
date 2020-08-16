@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
-import productImage from '../images/item3.jpg'
+import productImage from '../images/item2.jpg'
 import { useSelector, useDispatch } from 'react-redux'
 import { listProducts } from '../redux/actions/dataAction'
 import Spinner from '../components/spinner/Spinner'
 
-const Home = () => {
+const Home = (props) => {
     const productList = useSelector(state => state.productList);
     const { products, loading, error } = productList
     const dispatch = useDispatch()
@@ -28,8 +28,8 @@ const Home = () => {
                         <ul className="products">
                             {
                                 products.map(product =>
-                                    <li key={product.id}>
-                                        <a href={`products/${product.id}`}>
+                                    <li key={product._id}>
+                                        <a href={`products/${product._id}`}>
                                             <div className="product">
 
                                                 <img className="product-image" src={productImage} alt={product.name} />
@@ -39,7 +39,7 @@ const Home = () => {
                                                     </div>
                                                     <div className="product-brand">{product.brand}</div>
                                                     <div className="product-price">{product.price}</div>
-                                                    <div className="product-rating">{product.rating} stars ({product.numReviews})</div>
+                                                    <div className="product-rating">{product.rating} stars (Reviews{product.numReviews})</div>
 
                                                 </div>
                                             </div>

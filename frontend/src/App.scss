@@ -1,6 +1,7 @@
 #root {
   --sidebar-background: rgb(235, 235, 235);
-  // --navbar-background: rgb(236, 235, 235);
+  --check-out-button: #e0730d;
+  --delete-button: rgb(194, 28, 16);
   --main-brand-background: rgb(40, 75, 131);
   --main-brand-color: rgb(243, 243, 243);
   --sidebar-color: rgb(86, 89, 90);
@@ -10,6 +11,7 @@
   --right-panel-background: white;
   --right-panel-color: rgb(19, 18, 18);
 }
+
 
 * {
   margin: 0;
@@ -28,7 +30,7 @@
 // NAV BAR
 .nav-bar {
   width: 100%;
-  background: var(--main-brand-background);
+  background: var(--main-brand-color);
   height: 13vh;
   padding: 13px;
   display: flex;
@@ -41,24 +43,28 @@
 
   .brand {
     margin: auto 0;
-    width: 35%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: auto;
 
 
     .menu-button {
       font-size: 2rem;
-      padding: .5rem;
+      padding: .3rem;
       margin: auto;
       background: none;
       border: none;
       outline: none;
-      color: var(--main-brand-color);
+      color: var(--main-brand-background);
       cursor: pointer;
     }
 
     .brand-logo {
       text-decoration: none;
-      color: var(--main-brand-color);
-      font-size: 1.5rem;
+      color: var(--main-brand-background);
+      font-size: 25px;
       font-weight: bold;
       padding: .1rem;
     }
@@ -66,14 +72,15 @@
 
   .item-wrapper {
     display: flex;
+    flex: 1;
     flex-direction: row;
-    width: 75%;
+    width: auto;
     justify-content: flex-end;
 
     .item {
       align-content: center;
       justify-content: center;
-      color: var(--main-brand-color);
+      color: var(--main-brand-background);
       padding: 2px 2px;
       margin: auto 20px;
 
@@ -122,6 +129,7 @@
 
 // CONTENT SECTION
 .container {
+  font-size: 1rem;
   min-width: 75%;
   width: 100%;
   flex-direction: column;
@@ -142,6 +150,7 @@
 
 .home-container {
   grid-area: main;
+  font-size: 1rem;
 
 
   .products {
@@ -232,6 +241,7 @@
 // PRODUCT DETAILS
 
 .product-screen {
+  font-size: 1rem;
 
   .back-button-container:hover {
     transform: scale(1.08);
@@ -247,7 +257,7 @@
     font-size: 1rem;
     background: var(--main-brand-background);
     margin: 10px 0;
-    border-radius: 5px;
+    border-radius: 2px;
     transform: translateZ(0);
     transition: transform 0.25s ease-in-out;
     color: var(--main-brand-color);
@@ -275,47 +285,233 @@
 
     .details-info {
       flex: 2 1 25rem;
+      padding-left: 1rem;
+      font-size: 1.3rem;
 
+      ul {
+        li {
+          margin-bottom: .2rem;
+        }
+      }
     }
 
     .details-action {
       flex: 2 1 25rem;
-      border-radius: 0.5rem;
+      border-radius: 2px;
       background: #f8f8f8;
-      border: .1rem #808080 solid;
       padding: 1rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: var(--sidebar-color);
+      background: var(--link-active);
 
 
       ul {
-        li:last-child {
-          display: flex;
-          flex-direction: column;
+
+        li {
+          margin-bottom: .2rem;
+
+          select {
+            margin-top: 1rem;
+            font-weight: bold;
+            width: 50px;
+            outline: none;
+            border-radius: 2px;
+            color: var(--sidebar-color);
+          }
+
+          :last-child {
+            display: flex;
+            flex-direction: column;
+          }
+
+          .button-container {
+            width: 100%;
+            height: 63px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .button {
+              height: 100%;
+              width: 50%;
+              padding: 5px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 1rem;
+              font: 400;
+              background: var(--check-out-button);
+              margin: 10px 0;
+              border-radius: 5px;
+              transform: translateZ(0);
+              transition: transform 0.25s ease-in-out;
+              color: var(--main-brand-color);
+              border: none;
+              outline: none;
+              border-radius: 2px;
+              cursor: pointer;
+            }
+
+            .button:hover {
+              transform: scale(1.05);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+// CART
+.cart {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 1rem;
+  align-items: flex-start;
+  font-size: 1rem;
+  text-decoration: none;
+
+  .cart-list {
+    flex: 3 1 40rem;
+    padding-right: 1rem;
+
+    .cart-list-container {
+      padding: 1rem;
+      list-style-type: none;
+      align-items: flex-end;
+
+      .empty-cart {
+        color: var(--delete-button);
+        font-size: 1rem;
+        font-weight: bold
+      }
+
+
+
+      li {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 1rem;
+        padding-bottom: 1rem;
+        border-bottom: .1rem #808080 solid;
+
+        .price-div {
+          font-size: 1.4rem;
+          font-weight: bold;
+        }
+
+        .cart-image {
+          flex: 1 1;
+
+          img {
+            max-width: 10rem;
+            max-height: 10rem;
+
+          }
+        }
+
+        .cart-name {
+          flex: 8 1;
+          padding-left: 1rem;
+          font-size: 1.2rem;
+
+
+          a {
+            font-size: 1.5rem;
+            color: black;
+            padding: .2rem;
+          }
+
+          select {}
 
           .button {
-            height: 40px;
-            width: 100%;
-            padding: 5px;
+            margin-top: .5rem;
+            height: 30px;
+            width: 70px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1rem;
-            background: var(--main-brand-background);
-            margin: 10px 0;
-            border-radius: 5px;
+            background: var(--delete-button);
             transform: translateZ(0);
             transition: transform 0.25s ease-in-out;
             color: var(--main-brand-color);
             border: none;
             outline: none;
-            border-radius: 0.5rem;
+            border-radius: 2px;
             cursor: pointer;
+          }
+
+          .button:disabled {
+            background: var(--sidebar-background);
           }
 
           .button:hover {
             transform: scale(1.05);
           }
         }
+
+        .cart-price {
+          flex: 2 2;
+          font-size: 1.2rem;
+          font-weight: bold;
+          text-align: right;
+        }
+
+        :first-child {
+          display: flex;
+          justify-content: space-between;
+        }
       }
     }
   }
+
+  .cart-action {
+    flex: 1 1 20rem;
+    background: var(--link-active);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border-radius: 2px;
+
+    .amount {
+      font-size: 1.4rem;
+      padding: .2rem;
+      font-weight: bold;
+      width: 30%;
+      text-align: center;
+      border-radius: 2px;
+    }
+
+    .button {
+      height: 40px;
+      width: 60%;
+      padding: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font: 300;
+      background: var(--check-out-button);
+      margin: 10px 0;
+      border-radius: 2px;
+      transform: translateZ(0);
+      transition: transform 0.25s ease-in-out;
+      color: var(--main-brand-color);
+      border: none;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      transform: scale(1.05);
+    }
+  }
+
+
 }

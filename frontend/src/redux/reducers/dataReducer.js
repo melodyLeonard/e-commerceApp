@@ -6,7 +6,13 @@ import {
     PRODUCT_DETAILS_FAIL,
     PRODUCT_DETAILS_LOADING,
     PRODUCT_DETAILS_REQUEST,
-    PRODUCT_DETAILS_SUCCESS
+    PRODUCT_DETAILS_SUCCESS,
+    PRODUCT_SAVE_REQUEST,
+    PRODUCT_SAVE_SUCCESS,
+    PRODUCT_SAVE_FAIL,
+    PRODUCT_DELETE_FAIL,
+    PRODUCT_DELETE_REQUEST,
+    PRODUCT_DELETE_SUCCESS
 } from '../types'
 
 // PRODUCT LIST
@@ -15,7 +21,8 @@ export const productListReducer = (state = { products: [] }, action) => {
 
         case PRODUCT_LIST_REQUEST:
             return {
-                loading: true
+                loading: true,
+                products: []
             }
         case PRODUCT_LIST_LOADING:
             return {
@@ -54,6 +61,51 @@ export const productDetailsReducer = (state = { product: {} }, action) => {
                 products: action.payload
             }
         case PRODUCT_DETAILS_FAIL:
+            return {
+                loading: false,
+                error: action.payload
+            }
+        default:
+            return state
+    }
+}
+
+
+export const productSaveReducer = (state = { product: {} }, action) => {
+    switch (action.type) {
+        case PRODUCT_SAVE_REQUEST:
+            return {
+                loading: true
+            }
+        case PRODUCT_SAVE_SUCCESS:
+            return {
+                loading: false,
+                success: true,
+                products: action.payload
+            }
+        case PRODUCT_SAVE_FAIL:
+            return {
+                loading: false,
+                error: action.payload
+            }
+        default:
+            return state
+    }
+}
+
+export const productDeleteReducer = (state = { product: {} }, action) => {
+    switch (action.type) {
+        case PRODUCT_DELETE_REQUEST:
+            return {
+                loading: true
+            }
+        case PRODUCT_DELETE_SUCCESS:
+            return {
+                loading: false,
+                success: true,
+                products: action.payload
+            }
+        case PRODUCT_DELETE_FAIL:
             return {
                 loading: false,
                 error: action.payload

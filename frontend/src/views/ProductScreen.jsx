@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { detailsProduct } from '../redux/actions/dataAction'
 import Spinner from '../components/spinner/Spinner'
 
-import productImage from '../images/item3.jpg'
+import productImage from '../images/item2.jpg'
 
 
 
@@ -12,9 +12,9 @@ const ProductScreen = (props) => {
 
     const productDetails = useSelector(state => state.productDetails);
 
-    const { product, loading, error } = productDetails
-
+    const { products, loading, error } = productDetails
     const dispatch = useDispatch();
+
 
     useEffect(() => {
         dispatch(detailsProduct(props.match.params.id))
@@ -24,7 +24,7 @@ const ProductScreen = (props) => {
     }, [])
 
     const handleAddToCart = () => {
-        props.history.push('/cart' + props.match.id + '?qty=' + qty)
+        props.history.push(`/cart/${props.match.params.id}/?qty=${qty}`)
     }
 
     const handleChange = (e) => {
@@ -35,7 +35,7 @@ const ProductScreen = (props) => {
         <div className="product-screen">
             {
                 loading ? <Spinner /> :
-                    error ? <div>{error}</div> :
+                    error ? <div>{error}</div> : products ?
                         <div>
                             <a href="/">
                                 <div className="back-button-container">
@@ -44,23 +44,23 @@ const ProductScreen = (props) => {
                             </a>
                             <div className="details ">
                                 <div className="detail-image">
-                                    <img src={productImage} alt={product.name} />
+                                    <img src={productImage} alt={products.name} />
                                 </div>
                                 <div className="details-info">
                                     <ul>
                                         <li>
-                                            <h4>{product.name}</h4>
+                                            <h4>{products.name}</h4>
                                         </li>
                                         <li>
-                                            {product.rating} Stars ({product.numReviews} Reviews)
+                                            {products.rating} Stars ({products.numReviews} Reviews)
                                         </li>
                                         <li>
-                                            Price: <b>{product.price}</b>
+                                            Price: <b>{products.price}</b>
                                         </li>
                                         <li>
                                             Description:
                             <div>
-                                                {product.description}
+                                                {products.description}
                                             </div>
                                         </li>
                                     </ul>
@@ -68,28 +68,30 @@ const ProductScreen = (props) => {
                                 <div className="details-action">
                                     <ul>
                                         <li>
-                                            Price: {product.price}
+                                            Price: {products.price}
                                         </li>
                                         <li>
-                                            Status: {product.countInStock > 0 ? 'In stock' : 'Unavailble'}
+                                            Status: {products.countInStock > 0 ? 'In stock' : 'Out of stock'}
                                         </li>
                                         <li>
                                             Qty: <select
                                                 value={qty}
                                                 onChange={handleChange}
                                             >
-                                                {[...Array(product.countInStock).keys()].map(p =>
+                                                {[...Array(products.countInStock).keys()].map(p =>
                                                     <option value={p + 1}>{p + 1}</option>
                                                 )}
                                             </select>
                                         </li>
                                         <li>{
-                                            product.countInStock > 0 &&
-                                            <button
-                                                onClick={handleAddToCart}
-                                                className="button">
-                                                Add to Cart
+                                            products.countInStock > 0 &&
+                                            <div className="button-container">
+                                                <button
+                                                    onClick={handleAddToCart}
+                                                    className="button">
+                                                    Add to Cart
                                             </button>
+                                            </div>
 
                                         }
                                         </li>
@@ -98,6 +100,8 @@ const ProductScreen = (props) => {
                             </div>
 
                         </div>
+                        :
+                        <div>Can not display product</div>
             }
         </div>
     )
