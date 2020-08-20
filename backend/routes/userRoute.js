@@ -1,8 +1,30 @@
 import express from 'express'
 import User from '../models/userModel'
-import { getToken } from '../utils';
+import { getToken, isAuth } from '../utils';
 
 const router = express.Router();
+
+
+router.put('/:id', isAuth, async (req, res) => {
+    const userId = req.params.id;
+    const user = await User.findById(userId);
+    if (user) {
+        user.name = req.body.name || user.name;
+        user.email = req.body.email || user.email;
+        user.password = req.body.password || user.password;
+        const updatedUser = await user.save();
+        res.json({
+            _id: updatedUser.id,
+            name: updatedUser.name,
+            email: updatedUser.email,
+            isAdmin: updatedUser.isAdmin,
+            token: getToken(updatedUser),
+        });
+    } else {
+        res.status(404).json({ message: 'User Not Found' });
+    }
+});
+
 
 router.post('/signin', async (req, res) => {
     const signinUser = await User.findOne({
@@ -31,10 +53,10 @@ router.post('/signup', async (req, res) => {
             password: req.body.password,
             isAdmin: false
         })
-        const userExit = await User.findOne({
+        const userExist = await User.findOne({
             email: req.body.email
         });
-        if (!userExit) {
+        if (!userExist) {
             const newCreatedUser = await user.save()
             if (newCreatedUser) {
                 res.json({
@@ -45,7 +67,7 @@ router.post('/signup', async (req, res) => {
                     token: getToken(newCreatedUser),
                 })
             }
-        } else if (userExit) {
+        } else if (userExist) {
             res.status(401).json({ msg: 'User already exist' })
         }
 

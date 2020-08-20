@@ -38,18 +38,20 @@ const CartScreen = (props) => {
         <div className="cart">
             <div className="cart-list">
                 <ul className="cart-list-container">
-                    <li>
+                    {cartItems.length > 0 && <li>
                         <h3>
                             Shopping Cart
                         </h3>
                         <div className="price-div">
                             Price
                         </div>
-                    </li>
+                    </li>}
                     {
                         cartItems.length === 0 ?
-                            <div className="empty-cart">
-                                Cart is empty
+                            <div className="info-container">
+                                <div className="error">
+                                    There is no item currently in your Cart
+                                </div>
                             </div>
                             :
                             cartItems.map(item => <li key={item.product}>
@@ -83,19 +85,21 @@ const CartScreen = (props) => {
                 </ul>
             </div>
 
-            <div className="cart-action">
-                <h3 >
-                    Subtotal ({cartItems.reduce((acc, cur) => parseInt(acc) + parseInt(cur.qty), 0)} items)
-                    :
+            {
+                cartItems.length > 0 &&
+                <div className="cart-action">
+                    <h3 >
+                        Subtotal ({cartItems.reduce((acc, cur) => parseInt(acc) + parseInt(cur.qty), 0)} items)
+                        :
                     <span className="amount">
-                        N {cartItems.reduce((acc, cur) => parseInt(acc) + parseInt(cur.price) * parseInt(cur.qty), 0)}
-                    </span>
+                            N {cartItems.reduce((acc, cur) => parseInt(acc) + parseInt(cur.price) * parseInt(cur.qty), 0)}
+                        </span>
 
-                </h3>
-                <button onClick={checkOutHander} className="button" disabled={cartItems.length === 0}>
-                    Proceed to Checkout
+                    </h3>
+                    <button onClick={checkOutHander} className="button" disabled={cartItems.length === 0}>
+                        Proceed to Checkout
                 </button>
-            </div>
+                </div>}
         </div>
     )
 }

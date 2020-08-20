@@ -11,6 +11,7 @@
         border: 3px solid rgba(195, 195, 195, 0.6);
         border-radius: 50%;
         border-top-color: #034a85;
+        z-index: 1000;
         animation: spin 1s ease-in-out infinite;
         -webkit-animation: spin 1s ease-in-out infinite;
 

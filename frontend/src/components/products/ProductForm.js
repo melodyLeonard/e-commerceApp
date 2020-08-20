@@ -38,7 +38,6 @@ function ProductForm(props) {
             countInStock: product.countInStock,
             description: product.description
         })
-        console.log(description)
     }
 
     const dispatch = useDispatch()

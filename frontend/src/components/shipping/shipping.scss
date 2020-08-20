@@ -18,15 +18,16 @@
 
 
     .form-container {
+        border: .1rem #c0c0c0 solid;
+        border-radius: .5rem;
+        min-height: 400px;
         min-width: 350px;
         max-width: 355px;
-        min-height: 400px;
-        padding: .5rem;
-        // background: var(--color);
-        padding: 2rem 0;
+        padding: 1rem;
         color: var(--background);
         text-align: center;
-        box-shadow: 5px 5px 20px #cbced1, -5px -5px 20px #ffffff;
+
+
 
         .form-error {
             color: var(--error);
@@ -49,10 +50,10 @@
 
             .input {
                 padding: 5px;
-                width: 90%;
+                width: 100%;
                 height: 40px;
-                border-color: var(--background);
-                border-radius: 3px;
+                border: .1rem #c0c0c0 solid;
+                border-radius: .5rem;
                 margin-bottom: .5rem;
                 background: var(--color);
                 color: var(--dark-color);
@@ -61,7 +62,7 @@
         }
 
         .button-container {
-            margin-top: 1.5rem;
+            margin-top: .5rem;
             height: 35px;
             width: 60%;
             display: flex;

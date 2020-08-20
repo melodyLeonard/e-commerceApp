@@ -3,13 +3,16 @@ import { useSelector, useDispatch } from 'react-redux'
 import itemImage from '../../images/item2.jpg'
 import './placeorder.scss'
 import CheckOutSteps from '../checkout/CheckOutSteps'
+import { createOrder } from '../../redux/actions/orderActions';
+import Spinner from '../spinner/Spinner'
 
 const PlaceOrder = (props) => {
 
     const cart = useSelector(state => state.cart)
+    const orderCreate = useSelector(state => state.orderCreate);
+    const { loading, success, error, order } = orderCreate;
 
     const { cartItems, shipping, payment } = cart
-
     if (!shipping.address) {
         props.history.push('/shipping')
     } else if (!payment.paymentMethod) {
@@ -22,7 +25,10 @@ const PlaceOrder = (props) => {
     const totalPrice = itemsPrice + shippingPrice + taxPrice
 
     const placeOrderHandler = () => {
-        // 
+        dispatch(createOrder({
+            orderItems: cartItems, shipping, payment, itemsPrice, shippingPrice,
+            taxPrice, totalPrice
+        }));
     }
 
 
@@ -30,11 +36,13 @@ const PlaceOrder = (props) => {
 
 
     useEffect(() => {
-
+        if (success) {
+            props.history.push("/order/" + order._id);
+        }
         return () => {
             //
         }
-    }, [])
+    }, [success])
 
     return (
         <div className="placeorder">
@@ -96,35 +104,37 @@ const PlaceOrder = (props) => {
             </div>
 
             <div className="placeorder-action">
-                <ul>
-                    <li>
-                        <button className="button" onClick={placeOrderHandler}>Place Order</button>
-                    </li>
-                    <li>
-                        <h3>
-                            Your Order
+                {
+                    loading ? <Spinner /> :
+                        <ul>
+                            <li>
+                                <button className="button" onClick={placeOrderHandler} disabled={loading}>Place Order</button>
+                            </li>
+                            <li>
+                                <h3>
+                                    Your Order
                         </h3>
-                    </li>
+                            </li>
 
-                    <li>
-                        <div> Items </div>
-                        <div>N{itemsPrice}</div>
-                    </li>
-                    <li>
-                        <div> shipping </div>
-                        <div>N{shippingPrice}</div>
-                    </li>
-                    <li>
-                        <div>Tax </div>
-                        <div>N{taxPrice}</div>
-                    </li>
-                    <li>
-                        <div> Total: </div>
-                        <div>N{totalPrice}</div>
-                    </li>
+                            <li>
+                                <div> Items </div>
+                                <div>N{itemsPrice}</div>
+                            </li>
+                            <li>
+                                <div> shipping </div>
+                                <div>N{shippingPrice}</div>
+                            </li>
+                            <li>
+                                <div>Tax </div>
+                                <div>N{taxPrice}</div>
+                            </li>
+                            <li>
+                                <div> Total </div>
+                                <div>N{totalPrice}</div>
+                            </li>
 
-                </ul>
-
+                        </ul>
+                }
 
             </div>
         </div>

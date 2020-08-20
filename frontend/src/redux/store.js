@@ -7,10 +7,25 @@ import {
     productDetailsReducer,
     productSaveReducer,
     productDeleteReducer,
+    productReviewSaveReducer,
 } from './reducers/dataReducer'
 
 import { cartReducer } from './reducers/cartReducer'
-import { userSigninReducer, userSignupReducer } from './reducers/userReducer'
+import {
+    userSigninReducer,
+    userSignupReducer,
+    userUpdateReducer,
+} from './reducers/userReducer'
+
+import {
+    orderCreateReducer,
+    orderDetailsReducer,
+    orderPayReducer,
+    myOrderListReducer,
+    orderListReducer,
+    orderDeleteReducer,
+} from './reducers/orderReducers';
+
 
 const cartItems = Cookie.getJSON("cartItems") || []
 const userInfo = Cookie.getJSON("userInfo") || null
@@ -26,13 +41,30 @@ const initialState = {
 }
 
 const reducers = combineReducers({
+
+    //user
     userSignin: userSigninReducer,
     userSignup: userSignupReducer,
+    userUpdate: userUpdateReducer,
+
+    //product
     productList: productListReducer,
     productDetails: productDetailsReducer,
-    cart: cartReducer,
     productSave: productSaveReducer,
-    productDelete: productDeleteReducer
+    productDelete: productDeleteReducer,
+    productReviewSave: productReviewSaveReducer,
+
+    //cart
+    cart: cartReducer,
+
+    //order
+    orderCreate: orderCreateReducer,
+    orderDetails: orderDetailsReducer,
+    orderPay: orderPayReducer,
+    myOrderList: myOrderListReducer,
+    orderList: orderListReducer,
+    orderDelete: orderDeleteReducer,
+
 })
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

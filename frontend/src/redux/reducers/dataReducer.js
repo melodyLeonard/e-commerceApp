@@ -12,7 +12,11 @@ import {
     PRODUCT_SAVE_FAIL,
     PRODUCT_DELETE_FAIL,
     PRODUCT_DELETE_REQUEST,
-    PRODUCT_DELETE_SUCCESS
+    PRODUCT_DELETE_SUCCESS,
+    PRODUCT_REVIEW_SAVE_RESET,
+    PRODUCT_REVIEW_SAVE_FAIL,
+    PRODUCT_REVIEW_SAVE_SUCCESS,
+    PRODUCT_REVIEW_SAVE_REQUEST
 } from '../types'
 
 // PRODUCT LIST
@@ -112,5 +116,29 @@ export const productDeleteReducer = (state = { product: {} }, action) => {
             }
         default:
             return state
+    }
+}
+
+export const productReviewSaveReducer = (state = {}, action) => {
+    switch (action.type) {
+        case PRODUCT_REVIEW_SAVE_REQUEST:
+            return {
+                loading: true
+            };
+        case PRODUCT_REVIEW_SAVE_SUCCESS:
+            return {
+                loading: false,
+                review: action.payload,
+                success: true
+            };
+        case PRODUCT_REVIEW_SAVE_FAIL:
+            return {
+                loading: false,
+                errror: action.payload
+            };
+        case PRODUCT_REVIEW_SAVE_RESET:
+            return {};
+        default:
+            return state;
     }
 }

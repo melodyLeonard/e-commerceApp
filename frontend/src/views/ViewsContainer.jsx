@@ -9,7 +9,8 @@ import ProductForm from '../components/products/ProductForm'
 import Shipping from '../components/shipping/Shipping.js'
 import Payment from '../components/payment/Payment.js'
 import PlaceOrder from '../components/placeOrder/PlaceOrder.js'
-
+import ProfileScreen from './ProfileScreen.jsx'
+import OrdersScreen from '../components/OrderScreen'
 
 const ViewsContainer = () => {
     return (
@@ -17,6 +18,7 @@ const ViewsContainer = () => {
             <Router >
                 <Switch>
                     <Route exact path="/" component={Home} />
+                    <Route path="/category/:id" component={Home} />
                     <Route exact path="/products/:id" component={ProductScreen} />
                     <Route exact path="/products/" component={ProductForm} />
                     <Route exact path="/cart/:id?" component={CartScreen} />
@@ -24,7 +26,9 @@ const ViewsContainer = () => {
                     <Route exact path="/signup" component={Signup} />
                     <Route exact path="/shipping" component={Shipping} />
                     <Route exact path="/payment" component={Payment} />
+                    <Route exact path="/profile" component={ProfileScreen} />
                     <Route exact path="/placeorder" component={PlaceOrder} />
+                    <Route path="/orders" component={OrdersScreen} />
                 </Switch>
             </Router>
         </div>
