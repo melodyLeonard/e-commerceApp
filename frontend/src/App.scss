@@ -98,13 +98,21 @@
   padding: 1rem;
   list-style-type: none;
   z-index: 1;
-  background-color: #203040;
+  background: var(--main-brand-background);
+  color: var(--main-brand-color);
+  font-size: 1rem;
   margin: 0;
   margin-top: 0.4rem;
 }
 
 .dropdown:hover .dropdown-content {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 30px;
+  height: auto;
+  padding: 1rem;
 }
 
 /* filter */
@@ -123,10 +131,10 @@
   }
 }
 
-.filter input {
+.filter .input-search {
   padding: .44rem;
-  border-top-left-radius: 2px;
-  border-bottom-left-radius: 2px;
+  border-radius: .2px;
+  margin: 0 1rem;
   border: 0.1rem #c0c0c0 solid;
   font-size: 1rem;
 }
@@ -244,16 +252,6 @@ ul.review {
 }
 
 
-.details-info ul,
-.details-action ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.details-info li,
-.details-action li {
-  margin-bottom: 1rem;
-}
 
 
 // NAV BAR
@@ -314,6 +312,23 @@ ul.review {
       margin: auto 20px;
 
     }
+
+    .admin {
+      display: flex;
+      flex-direction: row;
+      width: auto;
+      justify-content: flex-end;
+      align-items: center;
+
+      .item {
+        align-content: center;
+        justify-content: center;
+        color: var(--main-brand-background);
+        padding: 2px 2px;
+        margin: auto 20px;
+
+      }
+    }
   }
 }
 
@@ -324,7 +339,7 @@ ul.review {
   max-width: 210px;
   min-width: 200px;
   min-height: 87vh;
-  background: var(--sidebar-background);
+  background: var(--main-brand-color);
   color: var(--sidebar-color);
   font-weight: var(--link-font);
   padding: 0 0.2em;

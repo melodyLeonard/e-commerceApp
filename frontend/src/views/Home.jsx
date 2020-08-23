@@ -38,7 +38,8 @@ const Home = (props) => {
             <ul className="filter">
                 <li>
                     <form onSubmit={submitHandler}>
-                        <input
+                        < input
+                            className="input-search"
                             name="searchKeyword"
                             onChange={(e) => setSearchKeyword(e.target.value)}
                         />
